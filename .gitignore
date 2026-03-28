@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+linkedin_post_*.txt
