@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Post Generator — AI-Powered Posts in Seconds</title>
+    <meta name="description" content="Generate professional, engaging LinkedIn posts instantly. Paste your topic or achievement and get a ready-to-post LinkedIn post powered by AI.">
+    <meta name="keywords" content="LinkedIn, post generator, AI writing, content creator, professional posts">
+    <meta name="author" content="Kokila M">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background particles -->
+    <div class="bg-particles" id="bgParticles"></div>
+
+    <!-- Main Container -->
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header" id="appHeader">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="logo-text">LinkedIn Post Generator</h1>
+                    <p class="logo-subtitle">AI-powered posts that feel human</p>
+                </div>
+            </div>
+            <div class="header-badge">
+                <span class="badge-dot"></span>
+                Powered by Llama 3
+            </div>
+        </header>
+
+        <!-- Post Configuration -->
+        <section class="card config-card" id="configCard">
+            <div class="card-header">
+                <div class="card-icon config-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="card-title">Craft Your Post</h2>
+                    <p class="card-description">Choose your style and tell us what to write about</p>
+                </div>
+            </div>
+
+            <div class="config-grid">
+                <div class="form-group">
+                    <label class="form-label" for="postType">📌 Post Type</label>
+                    <div class="select-wrapper">
+                        <select id="postType" class="input-field select-field">
+                            <option value="Achievement">Achievement</option>
+                            <option value="Learning">Learning</option>
+                            <option value="Project Launch">Project Launch</option>
+                            <option value="Internship / Job">Internship / Job</option>
+                            <option value="Hackathon">Hackathon</option>
+                            <option value="Reflection">Reflection</option>
+                        </select>
+                        <div class="select-arrow">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="tone">🎭 Tone</label>
+                    <div class="select-wrapper">
+                        <select id="tone" class="input-field select-field">
+                            <option value="Professional">Professional</option>
+                            <option value="Conversational">Conversational</option>
+                            <option value="Storytelling">Storytelling</option>
+                            <option value="Motivational">Motivational</option>
+                        </select>
+                        <div class="select-arrow">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="topicInput">📝 Topic / Achievement</label>
+                <textarea id="topicInput" class="input-field textarea-field" rows="5" placeholder="e.g. Completed my Microsoft Azure internship through AICTE Elevate program. Built a fake image detector using MobileNetV2. Learned about cloud AI services."></textarea>
+                <div class="char-counter" id="charCounter">0 characters</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">🔁 How many versions?</label>
+                <div class="version-selector" id="versionSelector">
+                    <button class="version-btn active" data-value="1">1</button>
+                    <button class="version-btn" data-value="2">2</button>
+                    <button class="version-btn" data-value="3">3</button>
+                </div>
+            </div>
+
+            <button class="generate-btn" id="generateBtn">
+                <span class="btn-content">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                    Generate Post
+                </span>
+                <span class="btn-loading" style="display: none;">
+                    <div class="spinner"></div>
+                    Generating...
+                </span>
+            </button>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="results-section" style="display: none;"></section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Built by <a href="https://github.com/kokilamariyayi" target="_blank" rel="noopener">Kokila M</a> · Powered by Groq + Llama 3</p>
+        </footer>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

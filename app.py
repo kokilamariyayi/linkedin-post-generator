@@ -1,5 +1,9 @@
+import os
+from dotenv import load_dotenv
 import streamlit as st
 from generator import generate_post, TONES, POST_TYPES
+
+load_dotenv()
 
 st.set_page_config(page_title="LinkedIn Post Generator", page_icon="💼", layout="centered")
 
@@ -8,7 +12,11 @@ st.markdown("Paste any topic or achievement — get a **ready-to-post LinkedIn p
 st.divider()
 
 # API Key
-api_key = st.text_input("🔑 Groq API Key", type="password", help="Free at console.groq.com")
+api_key = os.getenv("GROQ_API_KEY")
+if api_key:
+    st.info("Using the server-side Groq API key configured in GROQ_API_KEY.")
+else:
+    st.error("Server-side Groq API key is not configured. Set GROQ_API_KEY as an environment variable before launching the app.")
 
 st.subheader("✏️ Tell us about your post")
 

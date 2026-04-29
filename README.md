@@ -32,11 +32,30 @@
 ```bash
 git clone https://github.com/kokilamariyayi/linkedin-post-generator.git
 cd linkedin-post-generator
-pip install -r requirements.txt
-streamlit run app.py
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python -m streamlit run app.py
 ```
 
 > Get a **free Groq API key** at [console.groq.com](https://console.groq.com)
+
+### Run with your own server-side Groq key
+
+This app is configured to use a server-side `GROQ_API_KEY`. If the key is not set, the app will show an error and will not ask visitors for a key.
+
+Windows PowerShell:
+
+```powershell
+$env:GROQ_API_KEY = "your_groq_key_here"
+.venv\Scripts\python -m streamlit run app.py
+```
+
+Linux/macOS:
+
+```bash
+export GROQ_API_KEY="your_groq_key_here"
+.venv/bin/python -m streamlit run app.py
+```
 
 ---
 
