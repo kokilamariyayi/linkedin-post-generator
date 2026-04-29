@@ -2,6 +2,10 @@
 
 > Paste any topic or achievement — get a **ready-to-post LinkedIn post** in seconds, powered by Groq + Llama 3.
 
+## 🚀 **Try It Now:** https://postin-bot.web.app/
+
+*Live app deployed on Firebase Hosting — no setup required!*
+
 ---
 
 
@@ -11,19 +15,44 @@
 
 - 📌 **6 Post Types** — Achievement, Learning, Project Launch, Internship, Hackathon, Reflection
 - 🎭 **4 Tone Modes** — Professional, Conversational, Storytelling, Motivational
-- 🔁 **Generate up to 3 versions** at once — pick your favourite
+- 🔁 **Generate up to 3 diverse versions** — each with unique focus & CTA (journey, impact, or collaboration)
 - 📊 **Word & character count** shown for each post
 - ⬇️ **Download posts** as `.txt` files
+- 🎨 **Modern dark UI** with smooth interactions
 - 🚫 Never starts with *"Excited to"* or *"Thrilled to"*
+- ✅ **Fully responsive** — works on desktop and mobile
 
 ---
 
 ## 🛠️ Tech Stack
 
+### Backend
 | Tool | Purpose |
 |---|---|
 | `Groq` | LLM API (Llama 3 70B) |
-| `Streamlit` | Web UI |
+| `Streamlit` | Web UI (local version) |
+
+### Frontend (Live Version)
+| Tool | Purpose |
+|---|---|
+| `HTML/CSS/JavaScript` | Interactive web interface |
+| `Firebase Hosting` | Deployed at https://postin-bot.web.app |
+
+---
+
+## 🌐 Using the Live App
+
+The live version is hosted at **https://postin-bot.web.app/**
+
+To use the live app, you need to provide your own Groq API key:
+
+1. **Get a free API key** from [console.groq.com](https://console.groq.com)
+2. **Open browser console** (F12)
+3. **Run this command:**
+   ```javascript
+   localStorage.setItem('GROQ_API_KEY', 'your-groq-api-key-here')
+   ```
+4. **Refresh the page** and start generating posts!
 
 ---
 
@@ -63,9 +92,15 @@ export GROQ_API_KEY="your_groq_key_here"
 
 ```
 linkedin-post-generator/
-├── app.py              # Streamlit web app
+├── public/             # Frontend (deployed on Firebase)
+│   ├── index.html
+│   ├── app.js
+│   └── style.css
+├── app.py              # Streamlit web app (local)
 ├── generator.py        # Groq LLM post generation logic
-├── requirements.txt    # Dependencies
+├── requirements.txt    # Python dependencies
+├── firebase.json       # Firebase configuration
+├── .firebaserc         # Firebase project config
 ├── screenshots/        # Demo screenshots
 │   └── README.md
 ├── .gitignore
